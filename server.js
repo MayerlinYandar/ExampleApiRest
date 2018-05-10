@@ -80,7 +80,7 @@ app.post('/movies', (req, res) => {
 })
 
 // URL para actualizar una película
-// http://127.0.0.1:5000/movies/1
+// https://mayerlinyandarexampleapirest.herokuapp.com/movies
 app.patch('/movies/:id',(req, res) => {
     let params = req.params;
     let data = req.query;

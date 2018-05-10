@@ -57,7 +57,47 @@ app.delete('/users/:id',(req, res) => {
 })
 
 // ********************************************************************
+
+app.get('/', (req, res) => {
+    res.status(200).send("Películas y más películas")
+})
+
+// URL para listar todos las películas
+// http://127.0.0.1:5000/movies
+app.get('/movies', (req, res) => {
+    res.send(movies)
+})
+
+// URL para crear una película
+// http://127.0.0.1:5000/movies
+app.post('/movies', (req, res) => {
+    let data = req.query;
+    movies.push(data.movie_name)
+    res.send("New movie added")
+})
+
+// URL para actualizar una película
+// http://127.0.0.1:5000/movies/1
+app.patch('/movies/:id',(req, res) => {
+    let params = req.params;
+    let data = req.query;
+    movies[params.id] = data.movie_name
+    res.send("Movie updated")
+})
+
+// URL para eliminar una película
+// http://127.0.0.1:5000/movies/1
+app.delete('/movies/:id',(req, res) => {
+    let params = req.params;
+    movies.splice(params.id, 1);
+    res.send('Movie deleted')
+})
+
 // ********************************************************************
+
+
+
+
 
 // Crear y lanzar el servidor
 http.createServer(app).listen(PORT, () => {

@@ -8,8 +8,8 @@ const PORT = process.env.PORT || 5000
 
 let users = ['oscar', 'juan', 'marcos', 'julieta', 'Maye'];
 let movies = [
-    {titulo: 'El señor de los anillos', autor: 'J.R.R. Tolkien'},
-    {titulo: "Cancion de hielo y fuego", autor: 'George RR Martin'}
+    {titulo: 'El señor de los anillos', Genero: 'J.R.R. Tolkien'},
+    {titulo: "Cancion de hielo y fuego", Genero: 'George RR Martin'}
     
 ];
 
@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // URL raiz de la api
 // http://127.0.0.1:5000
 app.get('/', (req, res) => {
-    res.status(200).send("Welcome to API REST")
+    res.status(200).send("MOVIES")
 })
 
 // URL para listar todos los usuarios
@@ -72,7 +72,10 @@ app.get('/movies', (req, res) => {
 // http://127.0.0.1:5000/movies
 app.post('/movies', (req, res) => {
     let data = req.query;
-    movies.push(data.movie_name)
+
+    let items = {Id: data.movie_id, Titulo: data.movie_title, Genero: data.movie_genre, Anio: data.movie_year, Director: data.movie_director, Imagen: data.movie_picture, Sinopsis: data.movie_synopsis, Trailer: data.movie_trailer};
+
+    movies.push(items)
     res.send("New movie added")
 })
 
